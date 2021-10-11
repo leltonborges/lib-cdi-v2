@@ -2,6 +2,7 @@ package br.com.cdi.api.lib.helper;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Inject;
 import java.io.Serializable;
 
@@ -10,6 +11,9 @@ public class MessageHelper implements Serializable {
 
     @Inject
     private FacesContext context;
+
+    @Inject
+    private Flash flash;
 
     public void  addMessage(FacesMessage message){
         addMessage(null, message);
@@ -20,7 +24,7 @@ public class MessageHelper implements Serializable {
     }
 
     public MessageHelper onFlash(){
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        return  this;
+        flash.setKeepMessages(true);
+        return this;
     }
 }
