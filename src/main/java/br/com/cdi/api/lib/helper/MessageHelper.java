@@ -1,5 +1,7 @@
 package br.com.cdi.api.lib.helper;
 
+import br.com.cdi.api.lib.jsf.annotation.ScopeMap;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;

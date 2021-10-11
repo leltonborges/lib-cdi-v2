@@ -1,6 +1,6 @@
 package br.com.cdi.api.lib.factory;
 
-import br.com.cdi.api.lib.jsf.annotation.SessionMap;
+import br.com.cdi.api.lib.jsf.annotation.ScopeMap;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
@@ -25,20 +25,21 @@ public class JSFFactory implements Serializable {
         return  getExternalContext().getFlash();
     }
 
-
-    //TODO não resolvido
-//    @Produces
-//    @SessionMap
-//    public Map<String, Object> sessionMap(){
-//        return getExternalContext().getSessionMap();
-//    }
+    @Produces
+    @ScopeMap(ScopeMap.Scope.SESSION)
+    public Map<String, Object> sessionMap(){
+        //TODO metodo não esta respondendo como deveria
+        return getExternalContext().getSessionMap();
+    }
 
     @Produces
+    @ScopeMap(ScopeMap.Scope.REQUEST)
     public Map<String, Object> requestMap(){
         return  getExternalContext().getRequestMap();
     }
 
     @Produces
+    @ScopeMap(ScopeMap.Scope.APPLICATION)
     public Map<String, Object> applicationMap(){
         return getExternalContext().getApplicationMap();
     }
