@@ -1,0 +1,5 @@
+br/com/cdi/api/lib/transaction/TransactionCDI.class
+br/com/cdi/api/lib/DAO/DAO.class
+br/com/cdi/api/lib/factory/FactoryDAO.class
+br/com/cdi/api/lib/transaction/ManagerTransaction.class
+br/com/cdi/api/lib/factory/JPAFactory.class
