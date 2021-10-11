@@ -1,5 +1,6 @@
 package br.com.cdi.api.lib.transaction;
 
+import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 
 @Interceptor
 @TransactionCDI
+@Priority(Interceptor.Priority.APPLICATION) //outra forma de add interceptor
 public class ManagerTransaction implements Serializable {
     private static final long serialVersionUID = 1l;
 
