@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Interceptor
 @TransactionCDI
-@Priority(Interceptor.Priority.APPLICATION) //outra forma de add interceptor
+//@Priority(Interceptor.Priority.APPLICATION) //outra forma de add interceptor
 public class ManagerTransaction implements Serializable {
     private static final long serialVersionUID = 1l;
 
