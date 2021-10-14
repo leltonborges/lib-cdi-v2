@@ -2,15 +2,15 @@ package br.com.cdi.api.lib.jsf.phaselistener;
 
 import br.com.cdi.api.lib.jsf.annotation.PhaseLiteral;
 
-import javax.enterprise.event.Event;
+import javax.enterprise.inject.Vetoed;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.enterprise.inject.spi.CDI;
 import javax.enterprise.util.AnnotationLiteral;
 import javax.faces.event.PhaseEvent;
-import javax.inject.Inject;
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
 
+@Vetoed
 public class PhaseListenerObserver implements Serializable {
     private static final long serialVersionUID = -7378845517908106157L;
 

@@ -17,9 +17,9 @@ public class FactoryDAO implements Serializable {
     private EntityManager manager;
 
     @Produces
-    public <T> DAO<T> createDAO(@NotNull InjectionPoint point){
+    public <T,I> DAO<T,I> createDAO(@NotNull InjectionPoint point){
         ParameterizedType parameterizedType = (ParameterizedType) point.getType();
         Class<T> tClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
-        return  new DAO<T>(tClass, manager);
+        return  new DAO<T,I>(tClass, manager);
     }
 }
