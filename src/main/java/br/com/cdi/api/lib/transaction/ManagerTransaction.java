@@ -1,33 +1,27 @@
 package br.com.cdi.api.lib.transaction;
 
-import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import javax.persistence.EntityManager;
 import java.io.Serializable;
 
+//@Priority(Interceptor.Priority.APPLICATION) //outra forma de add interceptor
 @Interceptor
 @TransactionCDI
-//@Priority(Interceptor.Priority.APPLICATION) //outra forma de add interceptor
 public class ManagerTransaction implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    private Transacionado transacionado;
+
     @Inject
-    private EntityManager manager;
+    public ManagerTransaction(Transacionado transacionado) {
+        this.transacionado = transacionado;
+    }
 
     @AroundInvoke
-    public Object getManagerTransaction(InvocationContext context) {
-        manager.getTransaction().begin();
-        try {
-        Object result = context.proceed();
-        manager.getTransaction().commit();
-        return result;
-        }catch (Exception e){
-            manager.getTransaction().rollback();
-            throw new RuntimeException("Erro durante o prcesso getManagerTransaction\n"+ e);
-        }
+    public Object interceptor(InvocationContext context) {
+        return transacionado.executeTransacao(context);
     }
 }
 

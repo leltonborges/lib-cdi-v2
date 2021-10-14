@@ -1,16 +1,17 @@
 package br.com.cdi.api.lib.transaction;
 
+import javax.enterprise.inject.Typed;
 import javax.inject.Inject;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
-import java.io.Serializable;
 
-public class TransactionDefault implements Serializable {
- 
+@Typed(Transacionado.class)
+public class TransactionDefault implements Transacionado {
+    private static final long serialVersionUID = 1l;
 
     @Inject
-    private EntityManager manager;
-    public Object executeTransaction(InvocationContext context){
+    protected EntityManager manager;
+    public Object executeTransacao(InvocationContext context){
         manager.getTransaction().begin();
         try {
             Object result = context.proceed();

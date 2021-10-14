@@ -4,6 +4,7 @@ import br.com.cdi.api.lib.jsf.annotation.ScopeMap;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
@@ -15,33 +16,39 @@ public class JSFFactory implements Serializable {
 
     @Produces
     @RequestScoped
-    public FacesContext getFacesContext(){
+    public FacesContext getFacesContext() {
         return FacesContext.getCurrentInstance();
     }
 
     @Produces
     @RequestScoped
-    public Flash getFlash(){
-        return  getExternalContext().getFlash();
+    public Flash getFlash() {
+        return getExternalContext().getFlash();
     }
 
     @Produces
     @ScopeMap(ScopeMap.Scope.SESSION)
-    public Map<String, Object> sessionMap(){
+    public Map<String, Object> sessionMap() {
         //TODO metodo não esta respondendo como deveria
         return getExternalContext().getSessionMap();
     }
 
     @Produces
     @ScopeMap(ScopeMap.Scope.REQUEST)
-    public Map<String, Object> requestMap(){
-        return  getExternalContext().getRequestMap();
+    public Map<String, Object> requestMap() {
+        return getExternalContext().getRequestMap();
     }
 
     @Produces
     @ScopeMap(ScopeMap.Scope.APPLICATION)
-    public Map<String, Object> applicationMap(){
+    public Map<String, Object> applicationMap() {
         return getExternalContext().getApplicationMap();
+    }
+
+    @Produces
+    @RequestScoped
+    public NavigationHandler getNavigationHandler() {
+        return getFacesContext().getApplication().getNavigationHandler();
     }
 
     private ExternalContext getExternalContext() {
